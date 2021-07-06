@@ -22,6 +22,7 @@ run() {
 main() {
     run $(get_psql_cli "attach" '"attr"')
     run $(get_psql_cli "category" '"name"')
+    run $(get_psql_cli "category4" '"name"')
     run $(get_psql_cli "user" '"name"')
     # posts
     run $(get_psql_cli "post1" '"contents","userId","attachId"')
@@ -30,6 +31,8 @@ main() {
     run $(get_psql_cli "post2_categories_category" '"post2Id","categoryId"')
     run $(get_psql_cli "post3" '"contents","userId","attachId"')
     run $(get_psql_cli "post3_categories_category" '"post3Id","categoryId"')
+    run $(get_psql_cli "post4" '"contents","attachId"')
+    run $(get_psql_cli "post4_categories_category4" '"post4Id","category4Id"')
 }
 
 main "$@" || exit $?
