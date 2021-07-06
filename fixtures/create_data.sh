@@ -24,6 +24,7 @@ main() {
     run $(get_psql_cli "category" '"name"')
     run $(get_psql_cli "category4" '"name"')
     run $(get_psql_cli "user" '"name"')
+    run $(get_psql_cli "comment" '"comment","userId"')
     # posts
     run $(get_psql_cli "post1" '"contents","userId","attachId"')
     run $(get_psql_cli "post1_categories_category" '"post1Id","categoryId"')
