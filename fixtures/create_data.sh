@@ -32,7 +32,7 @@ main() {
     run $(get_psql_cli "post2_categories_category" '"post2Id","categoryId"')
     run $(get_psql_cli "post3" '"contents","userId","attachId"')
     run $(get_psql_cli "post3_categories_category" '"post3Id","categoryId"')
-    run $(get_psql_cli "post4" '"contents","attachId"')
+    run $(get_psql_cli "post4" '"contents","userId","attachId"')
     run $(get_psql_cli "post4_categories_category4" '"post4Id","category4Id"')
 }
 

@@ -5,12 +5,14 @@ import {
   JoinColumn,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Attach } from "./attach";
 import { Base } from "./base";
 import { Category4 } from "./category4";
+import { User } from "./user";
 
 @Entity()
 export class Post4 extends Base<Post4> {
@@ -32,6 +34,9 @@ export class Post4 extends Base<Post4> {
   })
   @JoinTable()
   categories: Category4[];
+
+  @ManyToOne((type) => User, (user) => user.posts4)
+  user: User;
 
   @OneToOne((type) => Attach, (attach) => attach.post4, {
     nullable: true,

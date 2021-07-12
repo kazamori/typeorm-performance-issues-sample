@@ -52,7 +52,15 @@ test=# \d
 $ yarn test --testNamePattern RelationId
 ```
 
-### QueryBuilder Results
+Results
 
 * https://gist.github.com/t2y/6c9283cf620740a3c1fee5bb9ddfc800#file-results-md
+
+### Run server application to inspect heap memory usage 
+
+```bash
+$ yarn memoryProfile
+Debugger listening on ws://127.0.0.1:9229/d47fd7ee-d7a6-418b-a329-66de1b4466a6
+...
+```
 

@@ -21,4 +21,7 @@ export class User extends Base<User> {
 
   @OneToMany((type) => Post3, (post) => post.user, { lazy: true })
   posts3: Promise<Post3[]>;
+
+  @OneToMany((type) => Post4, (post) => post.user, { lazy: true })
+  posts4: Promise<Post4[]>;
 }
