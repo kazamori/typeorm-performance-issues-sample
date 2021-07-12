@@ -61,16 +61,17 @@ async function getRawMany<T>(repo: Repository<T>, n: number): Promise<number> {
   return getElapsedTime(start, end);
 }
 
+const LIMITS = [20, 40, 80, 160, 320, 640, 1280, 2560];
+
 async function benchmark(
   targetFunc: <T>(repo: Repository<T>, n: number) => Promise<number>
 ) {
-  const nums = [20, 40, 80, 160, 320, 640, 1280, 2560];
   const attachResults: number[] = [];
   const userResults: number[] = [];
   const post1Results: number[] = [];
   const post2Results: number[] = [];
   const post3Results: number[] = [];
-  for (const n of nums) {
+  for (const n of LIMITS) {
     attachResults.push(await targetFunc(attachRepo, n));
     userResults.push(await targetFunc(userRepo, n));
     post1Results.push(await targetFunc(post1Repo, n));
@@ -80,32 +81,50 @@ async function benchmark(
   return [attachResults, userResults, post1Results, post2Results, post3Results];
 }
 
+function report(testName: string, results: [string, number[]][]) {
+  const reports: string[] = [];
+  for (const [entityName, elapsed] of results) {
+    const result: string[] = [];
+    for (let i = 0; i < LIMITS.length; i++) {
+      result.push(` - limit: ${LIMITS[i]}, elapsed: ${elapsed[i]} msec`);
+    }
+    reports.push(`${entityName}\n${result.join("\n")}`);
+  }
+  console.log(`${testName}\n${reports.join("\n")}`);
+}
+
 test("RelationId Repository.find()", async () => {
   const testName = expect.getState().currentTestName;
   const [attach, user, post1, post2, post3] = await benchmark(findRepository);
-  console.log(`attach ${testName}`, attach);
-  console.log(`user ${testName}`, user);
-  console.log(`post1 ${testName}`, post1);
-  console.log(`post2 ${testName}`, post2);
-  console.log(`post3 ${testName}`, post3);
+  report(testName, [
+    ["attach", attach],
+    ["user", user],
+    ["post1", post1],
+    ["post2", post2],
+    ["post3", post3],
+  ]);
 });
 
 test("RelationId QueryBuilder().getMany()", async () => {
   const testName = expect.getState().currentTestName;
   const [attach, user, post1, post2, post3] = await benchmark(getMany);
-  console.log(`attach ${testName}`, attach);
-  console.log(`user ${testName}`, user);
-  console.log(`post1 ${testName}`, post1);
-  console.log(`post2 ${testName}`, post2);
-  console.log(`post3 ${testName}`, post3);
+  report(testName, [
+    ["attach", attach],
+    ["user", user],
+    ["post1", post1],
+    ["post2", post2],
+    ["post3", post3],
+  ]);
 });
 
 test("RelationId QueryBuilder().getRawMany()", async () => {
   const testName = expect.getState().currentTestName;
   const [attach, user, post1, post2, post3] = await benchmark(getRawMany);
-  console.log(`attach ${testName}`, attach);
-  console.log(`user ${testName}`, user);
-  console.log(`post1 ${testName}`, post1);
-  console.log(`post2 ${testName}`, post2);
-  console.log(`post3 ${testName}`, post3);
+  report(testName, [
+    ["attach", attach],
+    ["user", user],
+    ["post1", post1],
+    ["post2", post2],
+    ["post3", post3],
+  ]);
 });
