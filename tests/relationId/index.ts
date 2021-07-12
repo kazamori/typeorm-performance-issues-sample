@@ -105,7 +105,7 @@ test("RelationId Repository.find()", async () => {
   ]);
 });
 
-test("RelationId QueryBuilder().getMany()", async () => {
+test("RelationId QueryBuilder.getMany()", async () => {
   const testName = expect.getState().currentTestName;
   const [attach, user, post1, post2, post3] = await benchmark(getMany);
   report(testName, [
@@ -117,7 +117,7 @@ test("RelationId QueryBuilder().getMany()", async () => {
   ]);
 });
 
-test("RelationId QueryBuilder().getRawMany()", async () => {
+test("RelationId QueryBuilder.getRawMany()", async () => {
   const testName = expect.getState().currentTestName;
   const [attach, user, post1, post2, post3] = await benchmark(getRawMany);
   report(testName, [
