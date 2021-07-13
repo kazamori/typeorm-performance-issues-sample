@@ -1,4 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Article } from "./article";
 import { Base } from "./base";
 import { Post1 } from "./post1";
 import { Post2 } from "./post2";
@@ -24,4 +25,7 @@ export class User extends Base<User> {
 
   @OneToMany((type) => Post4, (post) => post.user, { lazy: true })
   posts4: Promise<Post4[]>;
+
+  @OneToMany((type) => Article, (article) => article.user, { lazy: true })
+  article: Promise<Article[]>;
 }

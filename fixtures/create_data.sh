@@ -24,7 +24,6 @@ main() {
     run $(get_psql_cli "category" '"name"')
     run $(get_psql_cli "category4" '"name"')
     run $(get_psql_cli "user" '"name"')
-    run $(get_psql_cli "comment" '"comment","userId"')
     # posts
     run $(get_psql_cli "post1" '"contents","userId","attachId"')
     run $(get_psql_cli "post1_categories_category" '"post1Id","categoryId"')
@@ -34,6 +33,9 @@ main() {
     run $(get_psql_cli "post3_categories_category" '"post3Id","categoryId"')
     run $(get_psql_cli "post4" '"contents","userId","attachId"')
     run $(get_psql_cli "post4_categories_category4" '"post4Id","category4Id"')
+    # article
+    run $(get_psql_cli "article" '"wordCount","readMinutes","text1","text2","text3","text4","text5","text6","text7","text8","userId","attachId"')
+    run $(get_psql_cli "article_categories_category" '"articleId","categoryId"')
 }
 
 main "$@" || exit $?

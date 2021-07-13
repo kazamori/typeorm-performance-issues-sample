@@ -1,5 +1,6 @@
 import repl from "repl";
 import * as typeorm from "typeorm";
+import * as article from "./entity/article";
 import * as attach from "./entity/attach";
 import * as category from "./entity/category";
 import * as post1 from "./entity/post1";
@@ -18,6 +19,7 @@ preprocess();
 
 for (const items of [
   typeorm,
+  article,
   attach,
   category,
   post1,
