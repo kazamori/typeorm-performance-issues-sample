@@ -15,6 +15,7 @@
   "scripts": {
     "build": "tsc",
     "dbinit": "ts-node src/init.ts",
+    "dbsync": "ts-node src/sync.ts",
     "memoryProfile": "node --inspect --expose_gc --require ts-node/register/transpile-only src/memoryProfile.ts",
     "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
     "repl": "node --require ts-node/register/transpile-only --experimental-repl-await src/repl",
