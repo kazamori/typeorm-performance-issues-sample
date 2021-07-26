@@ -69,3 +69,13 @@ Debugger listening on ws://127.0.0.1:9229/d47fd7ee-d7a6-418b-a329-66de1b4466a6
 ```bash
 $ env DEBUG=true yarn test --testNamePattern "Distinct"
 ```
+
+### Run Bulk insert benchmarks
+
+```bash
+$ yarn test --testNamePattern "Bulk create 1000 articles 100 times"
+```
+
+```bash
+$ bash tests/bulk/psql.sh 
+```
