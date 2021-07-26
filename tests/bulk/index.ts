@@ -66,6 +66,14 @@ function createArticles(n: number) {
   return articles;
 }
 
+function createArticleInstances(n: number) {
+  const articles = [];
+  for (let i = 0; i < n; i++) {
+    articles.push(new Article(createArticle(i)));
+  }
+  return articles;
+}
+
 test("Bulk create article only -single-", async () => {
   const article = createArticle(1);
   await articleRepo.save(article);
@@ -129,6 +137,17 @@ test("Bulk create 1000 articles 100 times", async () => {
 test("Bulk create 10000 articles", async () => {
   const start = new Date();
   await articleRepo.save(createArticles(10000));
+  const end = new Date();
+  console.log(getElapsedTime(start, end));
+});
+
+test("Bulk manager.save 1000 articles 100 times", async () => {
+  const start = new Date();
+  let i = 0;
+  while (i < 100) {
+    await manager.save(createArticleInstances(1000));
+    i++;
+  }
   const end = new Date();
   console.log(getElapsedTime(start, end));
 });
